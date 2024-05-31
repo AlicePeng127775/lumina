@@ -1,0 +1,152 @@
+/* *{
+    border: 2px solid black;
+} */
+
+h1{
+    margin-top: 100px;
+    margin-left: 40px;
+    margin-bottom: 50px;
+}
+
+.all_products{
+    max-width:1400px ;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap:80px;
+    text-align: center;
+    align-items: center;
+    margin: auto;
+    animation: open 1.5s 1 ease-in-out;
+}
+
+.item{
+    width: 350px;
+    height: 620px;
+    background-color: antiquewhite;
+    border-radius: 7px;
+    align-items: center;
+}
+
+
+
+.item > p{
+    height: 150px;
+    align-items: center;
+    margin: 20px;
+}
+
+
+.item_img > img {
+    border-radius: 7px;
+    width: 250px;
+    height: 175px;
+    margin:50px auto;
+    
+}
+
+.add_to_cart_btn{
+    background-color: var(--hover);
+    color: #fff;
+    border-radius: 20%;
+    font-size: 2rem;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    border: none;
+    position: absolute;
+    right: 20px;
+}
+
+.add_to_cart{
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+
+
+.add_to_cart > div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.size {
+	display: inline-block;
+	width: 50px;
+	position: relative;
+	vertical-align: middle;
+	padding: 0;
+	overflow: hidden;
+	background-color: #fff;
+	color: #555;
+	border: 1px solid #aaa;
+	text-shadow: none;
+	border-radius: 4px;	
+	transition: box-shadow 0.25s ease;
+	z-index: 2;
+}
+ 
+.size:hover {
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+ 
+.size:before {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	border: 10px solid transparent;
+	border-top-color: #ccc;
+	top: 14px;
+	right: 10px;
+	cursor: pointer;
+	z-index: -2;
+}
+.size select {
+	cursor: pointer;
+	padding: 10px;
+	width: 100%;
+	border: none;
+	background: transparent;
+	background-image: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+ 
+.size select:focus {
+	outline: none;
+}
+
+
+.original_price{
+    display: none;
+
+}
+
+@keyframes open {
+    0% {
+        opacity: 0.2;
+        transform: translateY(200px);
+    }
+
+    100%{
+        opacity: 1;
+    }
+}
+@media (max-width: 500px) {
+    main{
+      zoom:50%;
+    }
+  }
+
+
+
+
+
