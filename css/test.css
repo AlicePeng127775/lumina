@@ -47,6 +47,39 @@ body{
   background-color:#FFFAF0;
   position: relative;
 }
+/* ==============================*/
+/*            Message            */
+/* ==============================*/
+
+.successM, .warningM, .errorM {
+  border: 1px solid;
+  margin:5px 0;
+  padding: 15px 10px 15px 50px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  position: relative; /* Added for positioning close button */
+  opacity: 1; /* Initially fully visible */
+  transition: opacity 0.5s ease-in-out; /* Smooth transition for hiding */
+}
+.successM {
+  color: #4F8A10;
+  background-color: #DFF2BF;
+  background-image: url('https://i.imgur.com/Q9BGTuy.png');
+}
+.warningM {
+  color: #9F6000;
+  background-color: #FEEFB3;
+  background-image: url('https://i.imgur.com/Z8q7ww7.png');
+}
+.errorM{
+  color: #D8000C;
+  background-color: #FFBABA;
+  background-image: url('https://i.imgur.com/GnyDvKN.png');
+}
+
+/* ==============================*/
+/*            header             */
+/* ==============================*/
 
 header{
   background-color:var(--header);
@@ -134,7 +167,9 @@ margin-left: 10%;
 
 }
 
-/* Search Bar */
+/* ==============================*/
+/*    header - search bar        */
+/* ==============================*/
 
 div.search {
   padding: 30px 30px;
@@ -204,7 +239,9 @@ form {
   
 }
 
-/* Shopping cart */
+/* ==============================*/
+/*   header - Shopping cart      */
+/* ==============================*/
 
 .cart_icon{
   font-size: 2rem;
@@ -235,7 +272,7 @@ form {
   right: 5px;
 }
 
-/*login*/
+
 
 .cart_icon{
   font-size: 2rem;
@@ -261,6 +298,10 @@ form {
 .content_wrap{
   height: 300px;
 }
+
+/* ==============================*/
+/*           Footer              */
+/* ==============================*/
 
 footer{
   display:flex;

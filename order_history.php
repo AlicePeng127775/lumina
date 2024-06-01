@@ -97,7 +97,7 @@ if (isset($_GET['id'])) {
     <?php require_once("partials/header.php") ?>
     <!------------------------------------------->
     <main>
-        <div class="container">
+        <div class="orderContainer">
             <div class="page-header">
                 <h1>Order History</h1>
             </div>

@@ -75,16 +75,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <!------------------------------------------->
 
     <main>
-				<?php if ($insertSuccess): ?>
-                    <div class="success-message">User registered successfully!</div>
+        <div class='message'></div>
+                <?php if ($insertSuccess): ?>
+                    <div class="success-message successM alert">User registered successfully!</div>
                 <?php endif; ?>
 
                 <?php if (!empty($errors)): ?>
-                    <div class="error-message">
                         <?php foreach ($errors as $error): ?>
+                            <div class="error-message errorM alert">
                             <p><?php echo $error; ?></p>
+                            </div>  
                         <?php endforeach; ?>
-				<?php endif; ?>
+                 
+				<?php endif; ?> 
+    
         <div class="signupFrm">
             <form method="post" class="form3">
                 <h1 class="title3">Sign up</h1>
@@ -101,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
 
                 <div class="inputContainer3">
-                    <input type="phone" class="input3" name="phone" placeholder="Phone" value="" required>
+                    <input type="phone" id='phone' class="input3" name="phone" placeholder="Phone" value="" required>
                     <label for="" class="label3">Phone</label>
                 </div>
                 
@@ -148,30 +152,67 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <!------------------------------------------->
 
     <script>
+
+            document.addEventListener("DOMContentLoaded", function() {
+                    const messageElement = document.querySelectorAll('.alert');
+                    if (messageElement) {
+                        setTimeout(() => {
+                            messageElement.style.opacity = '0'; // Start fading out
+                            setTimeout(() => {
+                                messageElement.remove(); // Remove the element after fading out
+                            }, 500); // Wait for the fade-out transition to complete
+                        }, 4000); // Display for 4 seconds
+                    }
+            });
+
+              function showMessage(type, message) {
+              const messageContainer = document.querySelector('.message');
+
+            const messageElement = document.createElement('div');
+            messageElement.className = type;
+            messageElement.textContent = message;
+
+            messageContainer.appendChild(messageElement);
+
+            // Automatically hide the message after 5 seconds
+            setTimeout(() => {
+                messageElement.style.opacity = '0'; // Start fading out
+                setTimeout(() => {
+                    messageElement.remove(); // Remove the element after fading out
+                }, 500); // Wait for the fade-out transition to complete
+            }, 4000); // Display for 5 seconds
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
             const form = document.querySelector('.form3');
             const pw1 = document.getElementById('pw1');
             const pw2 = document.getElementById('pw2');
+            const phone = document.getElementById('phone');
 
             form.addEventListener('submit', function(event) {
                 event.preventDefault();
 
-                const errorElement = form.querySelector('.invalid-feedback');
-                if (errorElement) {
-                    errorElement.textContent = '';
+                if (pw1.value !== pw2.value) {
+                    showMessage('warningM', 'Passwords do not match. Please retype your password.');
+                    return;
                 }
 
-                if (pw1.value !== pw2.value) {
-                    alert('Passwords do not match. Please retype your password.');
-                    if (errorElement) {
-                        errorElement.textContent = 'Passwords do not match.';
-                        return;
-                    }
-                } else {
-                    form.submit(); 
+                const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+                if (!passwordPattern.test(pw1.value)) {
+                    showMessage('warningM', 'Password needs to be at least 8 characters long and contain both uppercase and lowercase letters.');
+                    return;
                 }
+
+                if (phone.value.length !== 10 || isNaN(phone.value)) {
+                    showMessage('warningM', 'Phone number must be exactly 10 digits.');
+                    return;
+                }
+
+                // showMessage('successM', 'Form submitted successfully.');
+                form.submit();
             });
         });
+
     </script>
 </body>
 </html>

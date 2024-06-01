@@ -29,7 +29,8 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             header("Location: profile.php?id=" . $user['id']);
             exit();
         } else {
-            $fmsg = "Invalid Login Credentials.";
+            $fmsg = "Email or Password error, Please try again!";
+
         }
     }
 }
@@ -55,7 +56,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     <?php require_once("partials/header.php") ?>
     <!------------------------------------------->
     <main>
-        <?php if (isset($fmsg)) { ?><div class="alert alert-danger" role="alert"><?php echo $fmsg; ?> </div><?php } ?>
+        <?php if (isset($fmsg)) { ?><div class="alert errorM"><?php echo $fmsg; ?> </div><?php } ?>
         <div class="login_sheet log_in">
             <form method="post" class="login_form">
                 <h2 class="login_title">Log In</h2>
@@ -76,5 +77,18 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     <!----------------- footer ------------------>
     <?php require_once("partials/footer.php") ?>
     <!------------------------------------------->
+    <script>
+       document.addEventListener("DOMContentLoaded", function() {
+        const messageElement = document.querySelector('.alert');
+        if (messageElement) {
+            setTimeout(() => {
+                messageElement.style.opacity = '0'; // Start fading out
+                setTimeout(() => {
+                    messageElement.remove(); // Remove the element after fading out
+                }, 500); // Wait for the fade-out transition to complete
+            }, 4000); // Display for 4 seconds
+        }
+    });
+    </script>
 </body>
 </html>

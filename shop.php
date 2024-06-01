@@ -1,5 +1,6 @@
 <?php
-	include_once './database/db.php';
+	session_start();
+	include_once './database/crud.php';
 ?>
 <!DOCTYPE html>
 <html>
