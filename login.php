@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('./database/db.php');
+include_once './database/crud.php';
 
 if (isset($_POST['email']) && isset($_POST['password'])) {
     $email = $_POST['email'];

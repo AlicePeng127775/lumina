@@ -175,13 +175,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             messageContainer.appendChild(messageElement);
 
-            // Automatically hide the message after 5 seconds
+            // Automatically hide the message after 4 seconds
             setTimeout(() => {
                 messageElement.style.opacity = '0'; // Start fading out
                 setTimeout(() => {
                     messageElement.remove(); // Remove the element after fading out
                 }, 500); // Wait for the fade-out transition to complete
-            }, 4000); // Display for 5 seconds
+            }, 4000); // Display for 4 seconds
         }
 
         document.addEventListener("DOMContentLoaded", function() {
@@ -208,8 +208,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     showMessage('warningM', 'Phone number must be exactly 10 digits.');
                     return;
                 }
-
-                // showMessage('successM', 'Form submitted successfully.');
                 form.submit();
             });
         });

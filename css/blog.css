@@ -121,6 +121,36 @@
   }
 }
 
+@media (max-width: 1020px) {
+
+  .blog_bar {
+    height: 50vh;
+  }
+
+  main{
+    zoom:80%;
+  }
+
+  .all_article{
+    zoom:80%;
+  }
+}
+
+@media (max-width: 780px) {
+
+  .blog_bar {
+    height: 40vh;
+  }
+
+  main{
+    zoom:70%;
+  }
+
+  .all_article{
+    zoom:70%;
+  }
+}
+
 
 
   @media (max-width: 500px) {

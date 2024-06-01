@@ -310,7 +310,7 @@ font-size: 3rem;
 
 @media (max-width: 500px) {
     .welcome{
-        height: 50vh;
+        height: 600px;
     }
     .welcome > div >img{
         height: 850px;
@@ -323,8 +323,6 @@ font-size: 3rem;
     .hot_sales_products{
         zoom:50%;
     }
-
-
 
   main{
     zoom:40%;
