@@ -169,7 +169,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               const messageContainer = document.querySelector('.message');
 
             const messageElement = document.createElement('div');
-            messageElement.className = type;
+            messageElement.classList.add(type);
             messageElement.textContent = message;
 
             messageContainer.appendChild(messageElement);

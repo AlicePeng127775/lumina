@@ -144,12 +144,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         }, 4000); // Display for 4 seconds
                     }
             });
-            
+
             function showMessage(type, message) {
               const messageContainer = document.querySelector('.message');
 
             const messageElement = document.createElement('div');
-            messageElement.className = type;
+            // messageElement.className = type;
+            messageElement.classList.add(type);
             messageElement.textContent = message;
 
             messageContainer.appendChild(messageElement);
