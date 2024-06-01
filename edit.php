@@ -67,6 +67,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <?php require_once("partials/header.php") ?>
     <!------------------------------------------->
     <main>
+                <?php if ($insertSuccess): ?>
+                    <div class="success-message">User registered successfully!</div>
+                <?php endif; ?>
+
+                <?php if (!empty($errors)): ?>
+                    <div class="error-message">
+                        <?php foreach ($errors as $error): ?>
+                            <p><?php echo $error; ?></p>
+                        <?php endforeach; ?>
+				<?php endif; ?>
         <div class="edtFrm">
             <form method="post" class="form3">
                 <h1 class="title3">Edit</h1>

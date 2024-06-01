@@ -72,7 +72,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             </form>
         </div>
     </main>
-    
+    <div class="content_wrap"></div>
     <!----------------- footer ------------------>
     <?php require_once("partials/footer.php") ?>
     <!------------------------------------------->
