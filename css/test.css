@@ -57,9 +57,9 @@ body{
   padding: 15px 10px 15px 50px;
   background-repeat: no-repeat;
   background-position: 10px center;
-  position: relative; /* Added for positioning close button */
-  opacity: 1; /* Initially fully visible */
-  transition: opacity 0.5s ease-in-out; /* Smooth transition for hiding */
+  position: relative; 
+  opacity: 1; 
+  transition: opacity 0.5s ease-in-out; 
 }
 .successM {
   color: #4F8A10;
