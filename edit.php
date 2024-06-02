@@ -2,6 +2,8 @@
 include_once './database/crud.php';
 
 $user = null;
+$insertSuccess = false;
+$errors = [];
 $updateSuccess = false;
 
 if (isset($_GET['id'])) {
