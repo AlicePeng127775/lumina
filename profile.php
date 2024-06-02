@@ -30,7 +30,6 @@ if(isset($_GET['id'])) {
       <meta name="author" content="Alice Peng" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="stylesheet" href="./css/test.css">
-      <link rel="stylesheet" href="./css/icon.css">
       <link rel="stylesheet" href="./css/pro.css" />
       <link rel="icon" type="image/x-icon" href="./img/Logo.png" />
       <link
@@ -66,10 +65,10 @@ if(isset($_GET['id'])) {
                   </div>
                   <div class='iconContainer'>
                    
-                      <a href="edit.php?id=<?php echo $user['id'];?>" onclick="return confirm('Would you like to edit this entry?')"  style='color:#ab6263; font-size:2rem; text-align: center;'><ion-icon name="create-outline"></ion-icon></a>
+                      <a href="edit.php?id=<?php echo $user['id'];?>" onclick="return confirm('Would you like to edit this entry?')"  style='color:#ab6263; font-size:2rem; text-align: center; align-items: center;'><ion-icon name="create-outline"></ion-icon></a>
                     
                     
-                      <a href="logout.php" style='color:#ab6263; font-size:2rem; text-align: center;' ><ion-icon name="log-out-outline"></ion-icon> </a>
+                      <a href="logout.php" style='color:#ab6263; font-size:2rem; text-align: center; align-items: center;' ><ion-icon name="log-out-outline"></ion-icon> </a>
                     
                   </div>
             

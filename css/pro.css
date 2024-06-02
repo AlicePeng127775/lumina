@@ -65,6 +65,7 @@ h1{
     display: flex;
     align-items: end;
     gap:15px;
+    width: 80px;
     text-align: center;
 }
 
