@@ -32,7 +32,7 @@ if(!$userSQL)
 
 if(isset($_GET['edit']))
 {
-    $userSQL = $$connection->query("SELECT *  FROM user WHERE id=".$_GET['edit']);
+    $userSQL = $connection->query("SELECT *  FROM user WHERE id=".$_GET['edit']);
     $getROW = $userSQL->fetch_array();
 
 }

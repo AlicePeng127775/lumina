@@ -16,6 +16,15 @@ if (isset($_GET['id'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // $fn = test_input($connection, $_POST['fn']);
+    // $ln = test_input($connection, $_POST['ln']);
+    // $phone = test_input($connection, $_POST['phone']);
+    // $email = test_input($connection, $_POST['email']);
+    // $province = test_input($connection, $_POST['province']);
+    // $address = test_input($connection, $_POST['address']);
+    // $postcode = test_input($connection, $_POST['postcode']);
+    // $password = test_input($connection, $_POST['password']);
+
     $fn = $connection->real_escape_string($_POST['fn']);
     $ln = $connection->real_escape_string($_POST['ln']);
     $phone = $connection->real_escape_string($_POST['phone']);
@@ -49,6 +58,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$errors[] = "Error: " . $insertQuery . "<br>" . $connection->error;
 		}
     }
+
+    // function test_input($connection,$data) {
+    //     $data = trim($data);
+    //     $data = stripslashes($data);
+    //     $data = htmlspecialchars($data);
+    //     return $connection->real_escape_string($data);;
+    //   }
 	
 }
 ?>

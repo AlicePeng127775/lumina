@@ -36,12 +36,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         province = '$province', 
         address = '$address', 
         postcode = '$postcode', 
-        password = '$password' 
+        password = '$password'
         WHERE id = $user_id
     ";
 
     if ($connection->query($updateQuery) === TRUE) {
         $updateSuccess = true;
+        header("Location: profile.php?id=$user_id");
     } else {
         echo "Error: " . $updateQuery . "<br>" . $connection->error;
     }
@@ -96,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                 </div>
                 <div class="inputContainer3">
-                    <input type="phone" class="input3" name="phone" placeholder="Phone" value="<?php echo $user['phone']; ?>" required>
+                    <input type="phone" class="input3" name="phone" id="phone" placeholder="Phone" value="<?php echo $user['phone']; ?>" required>
                     <label for="" class="label3">Phone</label>
                 </div>
                 <div class="inputContainer3">
