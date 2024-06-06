@@ -105,7 +105,7 @@ if (isset($_GET['id'])) {
                 <table>
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>Order ID</th>
                             <th>Item(s)</th>
                             <th>Quantity</th>
                             <th>Price</th>
