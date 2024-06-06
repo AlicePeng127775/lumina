@@ -51,6 +51,7 @@ if (isset($_GET['id'])) {
                             'price' => $orderDetail['price'],
                             'date' => $order['date']
                         ];
+
                     }
                 }
             }
@@ -90,7 +91,6 @@ if (isset($_GET['id'])) {
         nomodule
         src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
       ></script>
-
     </head>
 <body>
     <!----------------- header ------------------>
@@ -114,7 +114,15 @@ if (isset($_GET['id'])) {
                     </thead>
                     <tbody>
                         <?php if (!empty($orderHistory)): ?>
-                            <?php foreach ($orderHistory as $order): ?>
+                            <?php 
+                                $prevOrderId = null;
+                                foreach ($orderHistory as $order): 
+                            ?>
+                                <?php if ($prevOrderId !== null && $order['order_id'] !== $prevOrderId): ?>
+                                    <tr class="special-separator">
+                                        <td colspan="5"></td>
+                                    </tr>
+                                <?php endif; ?>
                                 <tr>
                                     <td><?php echo $order['order_id']; ?></td>
                                     <td class="items">
@@ -127,9 +135,7 @@ if (isset($_GET['id'])) {
                                     <td>$<?php echo $order['price']; ?></td>
                                     <td><?php echo $order['date']; ?></td>
                                 </tr>
-                                <tr class="special-separator">
-                                    <td colspan="5"></td>
-                                </tr>
+                                <?php $prevOrderId = $order['order_id']; ?>
                             <?php endforeach; ?>
                         <?php else: ?>
                             <tr>
