@@ -2,23 +2,21 @@
 <html>
 <header>
 <?php
-// session_start();
-// include_once './database/crud.php';
 
-$user = null;  
+$user = null;
 
-if(isset($_GET['id'])) {
-    $user_id = $connection->real_escape_string($_GET['id']);
-    $query = "SELECT * FROM user WHERE id = $user_id";
-    
-    $result = $connection->query($query);
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+    $query = "SELECT * FROM user WHERE id = ?";
+    $stmt = $connection->prepare($query);
+    $stmt->bind_param('i', $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    if($result->num_rows > 0) {
-        $user = $result->fetch_array();
-
-    }    
-
-  }
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+    }
+}
 ?>
 			<div class="logo">
 				<a href="index.php"><img src="./img/Logo.png" alt="Logo" width="150px" height="100px" ></a>
@@ -45,7 +43,13 @@ if(isset($_GET['id'])) {
 					<div class="point"><p class="quantity"></p></div>
 				</div>
 
-				<div class="login_icon" ><?php if (isset($_GET['id'])) { ?> <a href='profile.php?id=<?php echo $user['id']; ?>'class='login_icon'><ion-icon name="person-outline"></ion-icon></a> <?php }else{?> <a href='login.php'class='login_icon'><ion-icon name="person-outline"></ion-icon></a> <?php } ?> </div>
+				<div class="login_icon">
+                <?php if ($user): ?>
+                    <a href="profile.php?id=<?php echo $user['id']; ?>" class="login_icon"><ion-icon name="person-outline"></ion-icon></a>
+                <?php else: ?>
+                    <a href="login.php" class="login_icon"><ion-icon name="person-outline"></ion-icon></a>
+                <?php endif; ?>
+            </div>
 			</div>
 			<input id="menu-toggle" type="checkbox" />
 			<label class='menu-button-container' for="menu-toggle">

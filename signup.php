@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once './database/crud.php';
 
 $user = null;
@@ -16,56 +17,47 @@ if (isset($_GET['id'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // $fn = test_input($connection, $_POST['fn']);
-    // $ln = test_input($connection, $_POST['ln']);
-    // $phone = test_input($connection, $_POST['phone']);
-    // $email = test_input($connection, $_POST['email']);
-    // $province = test_input($connection, $_POST['province']);
-    // $address = test_input($connection, $_POST['address']);
-    // $postcode = test_input($connection, $_POST['postcode']);
-    // $password = test_input($connection, $_POST['password']);
-
-    $fn = $connection->real_escape_string($_POST['fn']);
-    $ln = $connection->real_escape_string($_POST['ln']);
-    $phone = $connection->real_escape_string($_POST['phone']);
-    $email = $connection->real_escape_string($_POST['email']);
-    $province = $connection->real_escape_string($_POST['province']);
-    $address = $connection->real_escape_string($_POST['address']);
-    $postcode = $connection->real_escape_string($_POST['postcode']);
-    $password = $connection->real_escape_string($_POST['password']);
+    $fn = sanitize_input($connection, $_POST['fn']);
+    $ln = sanitize_input($connection, $_POST['ln']);
+    $phone = sanitize_input($connection, $_POST['phone']);
+    $email = sanitize_input($connection, $_POST['email']);
+    $province = sanitize_input($connection, $_POST['province']);
+    $address = sanitize_input($connection, $_POST['address']);
+    $postcode = sanitize_input($connection, $_POST['postcode']);
+    $password = sanitize_input($connection, $_POST['password']);
 
     // Check for duplicate email
     $emailQuery = "SELECT * FROM user WHERE email = '$email'";
     $emailResult = $connection->query($emailQuery);
     if ($emailResult->num_rows > 0) {
-		$errors[] = "The email address is already registered.";
+        $errors[] = "The email address is already registered.";
     }
 
     // Check for duplicate phone number
     $phoneQuery = "SELECT * FROM user WHERE phone = '$phone'";
     $phoneResult = $connection->query($phoneQuery);
     if ($phoneResult->num_rows > 0) {
-		$errors[] = "The phone number is already registered.";
+        $errors[] = "The phone number is already registered.";
     }
     if (empty($errors)) {
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $insertQuery = "
             INSERT INTO user (fn, ln, phone, email, province, address, postcode, password)
-            VALUES ('$fn', '$ln', '$phone', '$email', '$province', '$address', '$postcode', '$password')
+            VALUES ('$fn', '$ln', '$phone', '$email', '$province', '$address', '$postcode', '$hashed_password')
         ";
         if ($connection->query($insertQuery) === TRUE) {
-			$insertSuccess = true;
-		} else {
-			$errors[] = "Error: " . $insertQuery . "<br>" . $connection->error;
-		}
+            $insertSuccess = true;
+        } else {
+            $errors[] = "Error: " . $insertQuery . "<br>" . $connection->error;
+        }
     }
+}
 
-    // function test_input($connection,$data) {
-    //     $data = trim($data);
-    //     $data = stripslashes($data);
-    //     $data = htmlspecialchars($data);
-    //     return $connection->real_escape_string($data);;
-    //   }
-	
+function sanitize_input($connection, $data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $connection->real_escape_string($data);
 }
 ?>
 

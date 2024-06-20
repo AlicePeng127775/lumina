@@ -17,14 +17,15 @@ if (isset($_GET['id'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $fn = $connection->real_escape_string($_POST['fn']);
-    $ln = $connection->real_escape_string($_POST['ln']);
-    $phone = $connection->real_escape_string($_POST['phone']);
-    $email = $connection->real_escape_string($_POST['email']);
-    $province = $connection->real_escape_string($_POST['province']);
-    $address = $connection->real_escape_string($_POST['address']);
-    $postcode = $connection->real_escape_string($_POST['postcode']);
-    $password = $connection->real_escape_string($_POST['password']);
+    $fn = sanitize_input($connection, $_POST['fn']);
+    $ln = sanitize_input($connection, $_POST['ln']);
+    $phone = sanitize_input($connection, $_POST['phone']);
+    $email = sanitize_input($connection, $_POST['email']);
+    $province = sanitize_input($connection, $_POST['province']);
+    $address = sanitize_input($connection, $_POST['address']);
+    $postcode = sanitize_input($connection, $_POST['postcode']);
+    $password = sanitize_input($connection, $_POST['password']);
+
 
 
     $updateQuery = "
@@ -46,6 +47,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         echo "Error: " . $updateQuery . "<br>" . $connection->error;
     }
+}
+function sanitize_input($connection, $data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $connection->real_escape_string($data);
 }
 ?>
 
